@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: payment
+  namespace: shopwave
+spec:
+  type: LoadBalancer
+  selector:
+    app: payment
+  ports:
+    - port: 80
+      targetPort: 3004
