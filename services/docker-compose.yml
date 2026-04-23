@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+
+  frontend:
+    image: 485626261953.dkr.ecr.ap-south-1.amazonaws.com/shopwave:latest
+    container_name: frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - api-gateway
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "3001:3001"
+
+  auth-service:
+    build: ./auth-service
+    container_name: auth-service
+    ports:
+      - "3002:3002"
+
+  product-service:
+    build: ./product-service
+    container_name: product-service
+    ports:
+      - "3003:3003"
+
+  order-service:
+    build: ./order-service
+    ports:
+      - "3004:3004"
+
+  payment-service:
+    build: ./payment-service
+    ports:
+      - "3005:3005"
+
+  notification-service:
+    build: ./notification-service
+    ports:
+      - "3006:3006"
