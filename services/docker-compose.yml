@@ -42,9 +42,16 @@ services:
     build: ./notification-service
     ports:
       - "3006:3006"
-    mongodb:
+  mongodb:
     image: mongo:7
     container_name: mongodb
     ports:
       - "27017:27017"
+    restart: always
+
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
     restart: always
