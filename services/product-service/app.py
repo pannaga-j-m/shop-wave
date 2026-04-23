@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 # MongoDB
 def get_mongo(retries=10):
-    uri = os.getenv('MONGO_URI', 'mongodb://localhost:27017')
+    uri = os.getenv('MONGO_URI', 'mongodb://mongodb:27017')
     for i in range(retries):
         try:
             client = MongoClient(uri, serverSelectionTimeoutMS=3000)
@@ -29,7 +29,7 @@ products_col = db['products']
 
 # Redis cache
 try:
-    cache = redis.Redis.from_url(os.getenv('REDIS_URL', 'redis://localhost:6379'), decode_responses=True)
+    cache = redis.Redis.from_url(os.getenv('REDIS_URL', 'redis://redis:6379'), decode_responses=True)
     cache.ping()
     print('✅ Redis connected')
 except Exception as e:
